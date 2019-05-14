@@ -16,6 +16,8 @@ cursors.localConnection = new CursorConnection(
 
 // Update
 cursors.update = function() {
+  console.log('update : ' +cursors.localConnection.range);
+  console.log('update : ' +cursors.localConnection.id);
   cursors.socket.send(JSON.stringify(cursors.localConnection));
 };
 
@@ -74,7 +76,7 @@ cursors.socket.onmessage = function(message) {
     reportNewConnections = false;
   }
 
-  for (var i = 0; i < data.connections.length; i++) {
+  for (i = 0; i < data.connections.length; i++) {
     // Set the source if it's still on active connections
     if (data.sourceId == data.connections[i].id)
       source = data.connections[i];
